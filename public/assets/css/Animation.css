@@ -1,0 +1,10 @@
+#zoomin {
+    transition: transform 0.3s ease;
+}
+
+#zoomin:hover {
+    transform: scale(1.02);
+}
+a {
+    text-decoration: none;
+}

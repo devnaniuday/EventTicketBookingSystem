@@ -94,11 +94,11 @@ The hardware requirements for running the Event Tickets Booking System are:
 
 To install the Event Tickets Booking System, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/devnaniuday/EventTicketBookingSystem.git/
-4. Generate an application key: `php artisan key:generate`
-5. Run database migrations: `php artisan migrate`
-6. Seed the database (optional): `php artisan db:seed`
-7. Start the development server: `php artisan serve`
+1. Clone the repository: `git clone https://github.com/devnaniuday/EventTicketBookingSystem.git`
+2. Generate an application key: `php artisan key:generate`
+3. Run database migrations: `php artisan migrate`
+4. Seed the database (optional): `php artisan db:seed`
+5. Start the development server: `php artisan serve`
 
 ## Usage
 

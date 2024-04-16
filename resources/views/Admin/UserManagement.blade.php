@@ -73,16 +73,16 @@
                                 <thead>
                                     <tr>
                                         <th
-                                            class="text-left text-uppercase font-weight-bold bg-transparent border-bottom text-secondary">
+                                            class="text-center text-uppercase font-weight-bold bg-transparent border-bottom text-secondary">
                                             ID</th>
                                         <th
-                                            class="text-left text-uppercase font-weight-bold bg-transparent border-bottom text-secondary">
+                                            class="text-center text-uppercase font-weight-bold bg-transparent border-bottom text-secondary">
                                             Photo</th>
                                         <th
-                                            class="text-left text-uppercase font-weight-bold bg-transparent border-bottom text-secondary">
+                                            class="text-center text-uppercase font-weight-bold bg-transparent border-bottom text-secondary ">
                                             Name</th>
                                         <th
-                                            class="text-left text-uppercase font-weight-bold bg-transparent border-bottom text-secondary">
+                                            class="text-center text-uppercase font-weight-bold bg-transparent border-bottom text-secondary">
                                             Email</th>
                                         <th
                                             class="text-center text-uppercase font-weight-bold bg-transparent border-bottom text-secondary">
@@ -110,7 +110,7 @@
                                                     @endif
                                                 </div>
                                             </td>
-                                            <td class="align-middle bg-transparent border-bottom">{{ $user->name }}
+                                            <td class="align-middle bg-transparent border-bottom p-3">{{ $user->name }}
                                             </td>
                                             <td class="align-middle bg-transparent border-bottom">{{ $user->email }}
                                             </td>

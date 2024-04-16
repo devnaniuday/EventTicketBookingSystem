@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TicketController;
 
@@ -119,6 +120,13 @@ Route::post('/decreaseQuantity/{id}', [CartController::class, 'decreaseQuantity'
 
 // Auth Related Routes ----------------------------------------------------------------------------------------------------------
 
+// Google Api for signin
+Route::get('/verify-otp-google', [RegisterController::class, 'GoogleOTP'])->name('showOtpFormGoogle')->middleware('guest');
+
+// Sign in with Google
+
+Route::get('auth/google', [GoogleController::class, 'loginwithgoogle'])->name('login')->middleware('guest');
+Route::any('auth/google/callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback')->middleware('guest');
 // Sign up page
 Route::get('/sign-up', [RegisterController::class, 'create'])
 ->middleware('guest')

@@ -149,7 +149,8 @@
         $(document).ready(function() {
             // Initialize datepicker
             $('#date').datepicker({
-                showOtherMonths: true
+                showOtherMonths: true,
+                
             });
 
 

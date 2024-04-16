@@ -51,7 +51,12 @@ function increaseQuantity(id) {
             $("#SubTotal3").text(response.SubTotal);
             $("#SubTotal4").text(response.SubTotal);
             $("#ticket").text(response.ticket);
-            // location.reload();
+            if (response.error) {
+                $("#error-message").text(response.error).show(1000);
+                setTimeout(function () {
+                    $("#error-message").fadeOut(1000);
+                }, 5000);
+            }
         },
         error: function (xhr, status, error) {
             var errorMessage =
@@ -59,9 +64,6 @@ function increaseQuantity(id) {
                     ? xhr.responseJSON.error
                     : "Unknown error";
             console.error(errorMessage);
-            // Show the error message on the page
-            $("#error-message").text(errorMessage);
-            $("#error-message").show(); // Assuming you have a div with id="error-message" to display the error
         },
     });
 }

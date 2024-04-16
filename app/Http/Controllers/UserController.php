@@ -41,10 +41,6 @@ class UserController extends Controller
     // Delete the any user.
     public function destroy($id){
     {
-        $donePayment = User::whereNotNull('email_verified_at');
-        if ($donePayment) {
-            return redirect()->back()->with('error', 'You can not delete this account because it has already paid!');
-        }
         $hasEvents = Events::where('organizer_id', $id)->first();
         if ($hasEvents) {
             return redirect()->back()->with('error', 'The user has organized events and cannot be deleted.');
@@ -53,6 +49,10 @@ class UserController extends Controller
         if ($hasOrders) {
             return redirect()->back()->with('error', 'The user has orders as an organizer and cannot be deleted.');
         } 
+        $donePayment = User::whereNotNull('email_verified_at');
+        if ($donePayment) {
+            return redirect()->back()->with('error', 'You can not delete this account because it has already paid!');
+        }
         else {
             $user = User::findOrFail($id);
             $user->delete();

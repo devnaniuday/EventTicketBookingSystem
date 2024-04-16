@@ -14,7 +14,7 @@
                         <img src="{{ asset('storage/' . $ticket->event->image) }}" style="max-height: 300px;"
                             alt="">
                         <div class="ticket-number">
-                            <p>
+                            <p style="color: gray;">
                                 {{ $ticket->transaction_id }}
                             </p>
                         </div>

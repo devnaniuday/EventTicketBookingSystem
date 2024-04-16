@@ -38,16 +38,19 @@
                                                         {{ session('success') }}
                                                     </div>
                                                 @endif
-                                                <div id="error-message" class="alert alert-danger"
-                                                    style="display: none;"></div>
 
                                             </div>
                                         </div>
+
                                         @if ($cartItems->isEmpty())
                                             <p class="text-center p-5 pb-0">No Item Available</p>
                                         @else
                                             @foreach ($cartItems as $item)
-                                                <div class="card mb-3 bg-gray-200" id="zoomin">
+                                                <div class="row justify-content-center">
+                                                    <div id="error-message" class="alert alert-danger "
+                                                        style="display: none;"> </div>
+                                                </div>
+                                                <div class="card m-3 bg-gray-200" id="zoomin">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
                                                             <div class="d-flex flex-row align-items-center">
@@ -61,21 +64,22 @@
                                                                             style="width: 80px;">No Image Available
                                                                         </div>
                                                                     @endif
-
                                                                 </div>
                                                                 <div class="ms-3">
                                                                     <h5>{{ $item->event->name }}</h5>
                                                                     <p class="small mb-0"> <span
                                                                             class="me-2">{{ $item->event->venue }}</span>
+                                                                    </p>
+                                                                    <p class="small mb-0">
                                                                         <span
-                                                                            class="me-2">{{ date('d-m-Y', strtotime($item->event->date)) }}</span>
+                                                                            class="me-2">{{ date('d-M-Y', strtotime($item->event->date)) }}</span>
                                                                         <span
                                                                             class="me-2">{{ date('h:i A', strtotime($item->event->time)) }}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                             <div class="d-flex flex-row align-items-center ">
-                                                                <div style="width: 50px;" class="me-2">
+                                                                <div style="width: 70px;" class="me-2">
                                                                     <div class="quantity-selector d-flex">
                                                                         <a class="me-2"
                                                                             onclick="decreaseQuantity('{{ $item->id }}')">
@@ -90,7 +94,7 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                                <div style="width: 80px;">
+                                                                <div style="width: 90px;">
                                                                     <h5 class="mb-0">
                                                                         ₹{{ number_format($item->price) }}</h5>
                                                                 </div>
@@ -124,54 +128,7 @@
                                                     @endif
                                                 </div>
 
-                                                {{-- <p class="small mb-2">Card type</p>
-                                                <a href="#!" type="submit" class="text-white"><i
-                                                        class="fab fa-cc-mastercard fa-2x me-2"></i></a>
-                                                <a href="#!" type="submit" class="text-white"><i
-                                                        class="fab fa-cc-visa fa-2x me-2"></i></a>
-                                                <a href="#!" type="submit" class="text-white"><i
-                                                        class="fab fa-cc-amex fa-2x me-2"></i></a>
-                                                <a href="#!" type="submit" class="text-white"><i
-                                                        class="fab fa-cc-paypal fa-2x"></i></a>
 
-                                                <form class="mt-4">
-                                                    <div class="form-outline form-white mb-4">
-                                                        <input type="text" id="typeName" class="form-control "
-                                                            siez="17" placeholder="Cardholder's Name" />
-                                                        <label class="form-label" for="typeName">Cardholder's
-                                                            Name</label>
-                                                    </div>
-
-                                                    <div class="form-outline form-white mb-4">
-                                                        <input type="text" id="typeText" class="form-control "
-                                                            siez="17" placeholder="1234 5678 9012 3457"
-                                                            minlength="19" maxlength="19" />
-                                                        <label class="form-label" for="typeText">Card Number</label>
-                                                    </div>
-
-                                                    <div class="row mb-4">
-                                                        <div class="col-md-6">
-                                                            <div class="form-outline form-white">
-                                                                <input type="text" id="typeExp"
-                                                                    class="form-control " placeholder="MM/YYYY"
-                                                                    size="7" id="exp" minlength="7"
-                                                                    maxlength="7" />
-                                                                <label class="form-label"
-                                                                    for="typeExp">Expiration</label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-outline form-white">
-                                                                <input type="password" id="typeText"
-                                                                    class="form-control"
-                                                                    placeholder="&#9679;&#9679;&#9679;" size="1"
-                                                                    minlength="3" maxlength="3" />
-                                                                <label class="form-label" for="typeText">Cvv</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </form> --}}
 
                                                 <hr class="my-4">
                                                 <div class="bg-gray-300 p-2 rounded-5 mb-2 text-dark">

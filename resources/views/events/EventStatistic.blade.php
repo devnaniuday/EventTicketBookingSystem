@@ -103,7 +103,7 @@
                                         <th class="align-middle text-center ">Quantity</th>
                                         <th class="align-middle text-center ">Price</th>
                                         <th class="align-middle text-center ">Purchase Date</th>
-                                        <th class="align-middle text-center ">View</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -135,14 +135,7 @@
                                                 </p>
                                             </td>
 
-                                            <td class="align-middle text-center p-3 ">
-                                                <p class="text-sm text-dark  mb-0">
-                                                    <a href="#" class="text-secondary font-weight-bold  me-2">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                    </a>
-                                                </p>
-
-                                            </td>
+                                           
                                         </tr>
                                     @endforeach
 

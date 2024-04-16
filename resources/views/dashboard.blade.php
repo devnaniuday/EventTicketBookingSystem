@@ -96,8 +96,8 @@
                                         <h6 class="mt-3" style="font-family: Georgia">Price :
                                             ₹{{ number_format($ticket->price, 2) }}</h6>
                                         <h6 class="">Time : {{ date('h:i A', strtotime($ticket->time)) }}</h6>
-                                        <p style="font-family: Arial, sans-serif; font-size:15px">Ticket left :
-                                            {{ $ticket->quantity }}</p>
+                                        <p style="font-family: Arial, sans-serif; font-size:15px">Tickets left :
+                                            <span style="color: red;">{{$ticket->quantity }}</span></p>
                                     </div>
 
 
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                 </section>
-            </div>
+            </div>  
         </section>
         <x-app.footer />
     </main>
@@ -132,17 +132,19 @@
         });
     </script>
     <script>
-        const searchInput = document.getElementById('search-input');
+    const searchInput = document.getElementById('search-input');
+    let timer;
 
-        searchInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                const searchTerm = searchInput.value.trim();
-                const url = new URL(window.location.href);
-                url.searchParams.set('search', searchTerm);
-                window.location.href = url.toString();
-            }
-        });
-    </script>
+    searchInput.addEventListener('keyup', function(event) {
+        clearTimeout(timer); // Clear the previous timer
+        timer = setTimeout(function() {
+            const searchTerm = searchInput.value.trim();
+            const url = new URL(window.location.href);
+            url.searchParams.set('search', searchTerm);
+            window.location.href = url.toString();
+        }, 750); // Wait for 2 seconds before updating the URL
+    });
+</script>
 
 
 </x-app-layout>

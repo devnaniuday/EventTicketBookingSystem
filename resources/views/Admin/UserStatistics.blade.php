@@ -27,6 +27,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div id="zoomin"
+                            class="bg-gray-500 text-dark border-radius-2xl d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-user fa-beat-fade fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Users</p>
+                                <h6 class="mb-0">{{ $totalPaidUsers+$unverifiedUsers->count() }}</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- User Details End -->
@@ -44,9 +54,10 @@
                             <table class="table align-items-center mb-0 w-100">
                                 <thead class="bg-gray-200">
                                     <tr>
-                                        <th class="align-middle ps-5 ">Sr. No.</th>
-                                        <th class="align-middle ps-5 ">User Name</th>
+                                        <th class="align-middle text-center max-width-100">Sr. No.</th>
+                                        <th class="align-middle text-left max-width-100">User Name</th>
                                         <th class="align-middle text-center ">Email</th>
+                                        <th class="align-middle text-left ">Created At</th>
                                         <th class="align-middle text-center ">Verified</th>
                                         <th class="align-middle text-center ">Id</th>
                                     </tr>
@@ -54,12 +65,15 @@
                                 <tbody>
                                     @foreach ($paidUsers as $index => $user)
                                         <tr class="justify-content-center" id="zoomin">
-                                            <td class="align-middle p-3">{{ $index + 1 }}</td>
-                                            <td class="align-middle p-3">
-                                                <p class="text-sm text-dark ms-3 mb-0">{{ $user->name }}</p>
+                                            <td class="text-center max-width-100">{{ $index + 1 }}</td>
+                                            <td class="text-left">
+                                                <p class="text-sm text-dark ms-3 mb-0 max-width-100">{{ $user->name }}</p>
+                                            </td>
+                                            <td class="align-middle text-centercenter p-3">
+                                                <p class="text-sm text-dark max-width-100  mb-0">{{ $user->email }}</p>
                                             </td>
                                             <td class="align-middle text-center p-3">
-                                                <p class="text-sm text-dark max-width-100  mb-0">{{ $user->email }}</p>
+                                                <p class="text-sm text-dark max-width-100  mb-0">{{ $user->created_at }}</p>
                                             </td>
                                             <td class="align-middle text-center p-3 ">
                                                 <p class="text-sm text-dark  mb-0">{{ $user->email_verified_at ? 'Yes' : 'No' }}</p>
@@ -94,9 +108,10 @@
                             <table class="table align-items-center mb-0 w-100">
                                 <thead class="bg-gray-200">
                                     <tr>
-                                        <th class="align-middle ps-5 ">Sr. No.</th>
-                                        <th class="align-middle ps-5 ">User Name</th>
+                                        <th class="align-center text-center">Sr. No.</th>
+                                        <th class="align-center text-center">User Name</th>
                                         <th class="align-middle text-center ">Email</th>
+                                        <th class="align-middle text-left ">Created At</th>
                                         <th class="align-middle text-center ">Verified</th>
                                         <th class="align-middle text-center ">Id</th>
                                     </tr>
@@ -104,12 +119,15 @@
                                 <tbody>
                                     @foreach ($unverifiedUsers as $index => $user)
                                         <tr class="justify-content-center" id="zoomin">
-                                            <td class="align-middle p-3">{{ $index + 1 }}</td>
-                                            <td class="align-middle p-3">
-                                                <p class="text-sm text-dark ms-3 mb-0">{{ $user->name }}</p>
+                                            <td class="align-middle text-center">{{ $index + 1 }}</td>
+                                            <td class="align-middle">
+                                                <p class="text-sm text-dark ms-3 mb-0 text-center">{{ $user->name }}</p>
                                             </td>
                                             <td class="align-middle text-center p-3">
                                                 <p class="text-sm text-dark max-width-100  mb-0">{{ $user->email }}</p>
+                                            </td>
+                                            <td class="align-middle text-center p-3">
+                                                <p class="text-sm text-dark max-width-100  mb-0">{{ $user->created_at }}</p>
                                             </td>
                                             <td class="align-middle text-center p-3 ">
                                                 <p class="text-sm text-dark  mb-0">{{ $user->email_verified_at ? 'Yes' : 'No' }}</p>

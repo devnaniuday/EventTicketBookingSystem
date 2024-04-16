@@ -20,6 +20,10 @@ class LoginController extends Controller
      */
     public function create()
     {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
+
         return view('auth.signin');
     }
 
@@ -40,6 +44,7 @@ class LoginController extends Controller
                 'message' => 'User with this email does not exist.',
             ])->withInput($request->only('email'));
         }
+        // if user is not verify then it will redirect to verify page.
         if ($user->email_verified_at ===  null) {
             // Store verification data in session for later use when user clicks on resend link or submit form
             // Store verification data in session and redirect to enter OTP page
@@ -48,17 +53,17 @@ class LoginController extends Controller
             $otp = rand(1000, 9999);
             session(['otp' => $otp]);
 
+            // get data from the session and sent the email to user to verify the user email.
             Session::put('email', $email);
             Session::put('otp', $otp);
             Session::put('name', $name);
             Mail::to($email)->send(new TestMail($otp, 'Sign-up OTP!'));
-
+            // atter sending the email it will redirect to the verifyotp page and add session progress on .
             Session::put('registration_in_progress', true);
 
             return redirect()->route('verifyOtp');
         }
-
-
+        // if same user is trying to access the login page without verify and came form half way to registation prosess.
         if (Session::get('registration_in_progress') && $user) {
             $emailInSession = session('email');
 
@@ -68,11 +73,10 @@ class LoginController extends Controller
                 return redirect()->route('verifyOtp');
             }
         }
-
-
         $credentials = $request->only('email', 'password');
         $rememberMe = $request->rememberMe ? true : false;
 
+        // if the user is verified then it will check for the password and login the user.
         if (Auth::attempt($credentials, $rememberMe)) {
             $request->session()->regenerate();
 

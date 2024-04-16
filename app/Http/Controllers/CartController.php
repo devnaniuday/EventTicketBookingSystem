@@ -41,8 +41,8 @@ class CartController extends Controller
         $organizer_id = $event->organizer_id;
 
         // Check if the event has sufficient quantity
-        if ($event->quantity <= 1) {
-            return redirect()->back()->with('error', 'Insufficient quantity for event: ' . $event->name);
+        if ($event->quantity < 1) {
+            return redirect()->back()->with('error', 'Insufficient quantity for Ticket : ' . $event->name);
         }
 
         // Check if the item is already in the user's cart, then update quantity else create a new one
@@ -69,13 +69,6 @@ class CartController extends Controller
         return redirect('dashboard')->with('success', 'Added to Cart!');
     }
 
-
-    // Delete the item from cart
-    public function DeleteFromCart($id)
-    {
-        Cart::where("id", $id)->delete();
-        return redirect()->back()->with("error", "Deleted from Cart!");
-    }
 
     // Place the order from the cart table
     public function CheckOutOrder(Request $request)
@@ -107,6 +100,7 @@ class CartController extends Controller
         // return redirect()->back()->with('success', 'Your Order is Placed !!');
     }
 
+    // it will redirect to the payment gateway to place the order 
     public function paymentGateway()
     {
         // Set your Stripe API key.
@@ -117,13 +111,13 @@ class CartController extends Controller
         $SubTotal = Cart::where('user_id', $user->id)->sum('total_price');
         $ticket = Cart::where('user_id', $user->id)->sum('quantity');
         $eventNames = Cart::where('user_id', $user->id)->with('event')->get();
-        $description = 'Purchase ' . $ticket . ' ticket(s) for ';
+        $description = 'Purchase total  ' . $ticket . ' tickets for ';
         foreach ($eventNames as $eventName) {
 
-            $description .= $eventName->event->name . ', ';
+            $description .= $eventName->event->name . ' ' . $eventName->quantity . ' Tickets, ';
         }
 
-        // Create a Payment Intent
+        // Create a Payment Intent id for payment transition id 
         $paymentIntent = \Stripe\PaymentIntent::create([
             'amount' => $SubTotal * 100, // Amount in cents
             'currency' => 'INR',
@@ -134,6 +128,7 @@ class CartController extends Controller
             ],
         ]);
 
+        // create payment gateway session for payent
         $paymentGateway = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [
@@ -143,22 +138,26 @@ class CartController extends Controller
                         'product_data' => [
                             'name' => 'BookMyTicket.com',
                             'description' => $description,
-
                         ],
                         'unit_amount' => $SubTotal * 100, // Convert to cents
                     ],
                     'quantity' => 1,
                 ],
             ],
-            'customer_email' => $email, // Add customer's email
-            'billing_address_collection' => 'required', // Request customer's billing address
+            // Add customer's email
+            'customer_email' => $email,
+            // Request customer's billung address
+            'billing_address_collection' => 'required',
+            // Mode of the payment for gateway
             'mode' => 'payment',
+            // On successfull payment it will redirect to the checkout order route.
             'success_url' => route('CheckOutOrder') . '?payment_intent=' . $paymentIntent->id,
+            // If any error occure then it will redirect to the cart page.
             'cancel_url' => route('cart'),
         ]);
+        // it will redirect to stripe payment gateway url with payment intent id
         return redirect()->away($paymentGateway->url);
     }
-
 
     // Increase the quantity of the item in the cart page
     public function increaseQuantity($id)
@@ -174,16 +173,17 @@ class CartController extends Controller
 
             $SubTotal = Cart::where('user_id', $user->id)->sum('total_price');
             $ticket = Cart::where('user_id', $user->id)->sum('quantity');
+            // it will sent json data to through ajax request to web page
             return response()->json([
                 'quantity' => $cart->quantity,
-                'SubTotal' => $SubTotal,
-                'ticket' => $ticket
+                'SubTotal' => '₹' . number_format($SubTotal),
+                'ticket' => number_format($ticket),
             ]);
+            // if the item is more than quantity then show error message.
         } else {
-            echo response()->json(['error' => 'Insufficient quantity for event: ' . $event->name]);
+            return response()->json(['error' => 'Insufficient quantity for Ticket : ' . $event->name]);
         }
     }
-
     // Decrease the quantity of the item in the cart page 
     public function decreaseQuantity($id)
     {
@@ -200,9 +200,16 @@ class CartController extends Controller
             $ticket = Cart::where('user_id', $user->id)->sum('quantity');
             return response()->json([
                 'quantity' => $cart->quantity,
-                'SubTotal' => $SubTotal,
-                'ticket' => $ticket
+                'SubTotal' => '₹' . number_format($SubTotal),
+                'ticket' => number_format($ticket),
             ]);
         }
+    }
+
+    // Delete the item from cart
+    public function DeleteFromCart($id)
+    {
+        Cart::where("id", $id)->delete();
+        return redirect()->back()->with("error", "Deleted from Cart!");
     }
 }

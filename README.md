@@ -108,20 +108,28 @@ Once the installation is complete, you can access the Event Tickets Booking Syst
 ## Screenshots
 Sign-up:-
 ![Sign-Up](https://raw.githubusercontent.com/devnaniuday/EventTicketBookingSystem/main/screenshots/Sign-up.png)
+
 Login:-
 ![Sign-Up](https://raw.githubusercontent.com/devnaniuday/EventTicketBookingSystem/main/screenshots/Login.png)
+
 Otp-Verification Page:-
 ![Sign-Up](https://raw.githubusercontent.com/devnaniuday/EventTicketBookingSystem/main/screenshots/otp-verification.png)
+
 Payment:-
 ![Sign-Up](https://raw.githubusercontent.com/devnaniuday/EventTicketBookingSystem/main/screenshots/payment.png)
+
 Dashboard:-
 ![Sign-Up](https://raw.githubusercontent.com/devnaniuday/EventTicketBookingSystem/main/screenshots/dashboard.png)
+
 Create-Event:-
 ![Sign-Up](https://raw.githubusercontent.com/devnaniuday/EventTicketBookingSystem/main/screenshots/create-event.png)
+
 Ticket:-
 ![Sign-Up](https://raw.githubusercontent.com/devnaniuday/EventTicketBookingSystem/main/screenshots/ticket.png)
+
 User-management:-
 ![Sign-Up](https://raw.githubusercontent.com/devnaniuday/EventTicketBookingSystem/main/screenshots/user-managment.png)
+
 User-Profile:-
 ![Sign-Up](https://raw.githubusercontent.com/devnaniuday/EventTicketBookingSystem/main/screenshots/user-profile.png)
 

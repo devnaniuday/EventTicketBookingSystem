@@ -107,7 +107,7 @@ Once the installation is complete, you can access the Event Tickets Booking Syst
 
 ## Screenshots
 
-![Sign-Up](https://github.com/devnaniuday/EventTicketBookingSystem/tree/main/screenshots/Screenshot 2024-04-04 184220.png)
+![Sign-Up](https://github.com/devnaniuday/EventTicketBookingSystem/tree/main/screenshots/Sign-up.png)
 
 ## Contributing
 

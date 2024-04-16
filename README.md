@@ -15,6 +15,7 @@ The Event Tickets Booking System is a web application that allows event organize
 - [Hardware Requirements](#hardware-requirements)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -70,7 +71,7 @@ The Event Tickets Booking System is built using the following technologies:
 
 - Laravel PHP framework for the backend.
 - MySQL database for data storage.
-- HTML, CSS, and JavaScript for the frontend.
+- HTML, CSS, and JavaScript for the front end.
 - Bootstrap framework for responsive design.
 
 ## Software Requirements
@@ -104,6 +105,9 @@ To install the Event Tickets Booking System, follow these steps:
 
 Once the installation is complete, you can access the Event Tickets Booking System in your web browser at `(http://127.0.0.1:8000/)`.
 
+## Screenshots
+
+![Sign-Up](https://github.com/devnaniuday/EventTicketBookingSystem/tree/main/screenshots/Screenshot 2024-04-04 184220.png)
 
 ## Contributing
 
@@ -112,7 +116,3 @@ Contributions to the Event Tickets Booking System are welcome! To contribute, pl
 ## License
 
 The Event Tickets Booking System is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
----
-
-Feel free to customize this template with additional details or sections specific to your project's requirements and guidelines.
